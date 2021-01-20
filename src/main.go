@@ -25,7 +25,7 @@ type apiMeme struct {
 
 func getMemes(apiChan chan apiMeme, errChan chan error) {
 	api := apiMeme{}
-	res, err := http.Get("https://es.memedroid.com/")
+	res, err := http.Get("https://www.memedroid.com/memes/latest")
 	if err != nil {
 		log.Println(err.Error())
 		apiChan <- api
@@ -47,7 +47,6 @@ func getMemes(apiChan chan apiMeme, errChan chan error) {
 func sendMemes(w http.ResponseWriter, r *http.Request) {
 	api, errChan := make(chan apiMeme), make(chan error)
 	go getMemes(api, errChan)
-
 	json.NewEncoder(w).Encode(<-api)
 }
 func main() {
