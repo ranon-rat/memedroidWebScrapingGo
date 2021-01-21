@@ -28,8 +28,9 @@ func getMemes(apiChan chan apiMeme, errChan chan error) {
 	res, err := http.Get("https://www.memedroid.com/memes/latest")
 	if err != nil {
 		log.Println(err.Error())
-		apiChan <- api
-		errChan <- nil
+		close(apiChan)
+		errChan <- err
+		return
 	}
 	defer res.Body.Close()
 	htmlInfo, _ := ioutil.ReadAll(res.Body)
@@ -41,13 +42,13 @@ func getMemes(apiChan chan apiMeme, errChan chan error) {
 		})
 	}
 	apiChan <- api
-	errChan <- nil
+	close(errChan)
 
 }
 func sendMemes(w http.ResponseWriter, r *http.Request) {
 	api, errChan := make(chan apiMeme), make(chan error)
 	go getMemes(api, errChan)
-	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Origin", "*") // for allow every request
 	json.NewEncoder(w).Encode(<-api)
 }
 func main() {
