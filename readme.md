@@ -25,3 +25,18 @@ you can use it in your webpage because its a simple api.
 	]
 }
 ```
+
+```js
+fetch("https://webscrappingwithgolang.pythonboy123.repl.co/")
+.then(r=>r.json())
+.then(d=>{
+	d.memes.map(i=>{
+		console.log(`
+		${i.title}
+		${i.imageURL}
+		`);
+	})
+
+})
+.catch(e=>console.log(e))
+```
