@@ -25,7 +25,7 @@ you can use it in your webpage because its a simple api.
 	]
 }
 ```
-# example to work with the api 
+# example to work with the api  with js
 ```js
 fetch("https://webscrappingwithgolang.pythonboy123.repl.co/")// made the request
 .then(r=>r.json())// decode the request into a json
