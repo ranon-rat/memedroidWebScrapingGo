@@ -1,6 +1,6 @@
-# webScrappingWithGolang
+# memedroidWebScrapingGo
 
-its a simple web scrapper who extract memes from the page memedroid 
+its a simple web scrapper who extract memes from the page [memedroid](https://es.memedroid.com/) 
 
 you can use it in your webpage because its a simple api.
 
@@ -27,7 +27,7 @@ you can use it in your webpage because its a simple api.
 ```
 # example to work with the api  with js
 ```ts
-fetch(url/api",{})// made the request
+fetch("https://webscrappingwithgolang.pythonboy123.repl.co/")// made the request
 .then(r=>r.json())// decode the request into a json
 .then(d=>{
 	
