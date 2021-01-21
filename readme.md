@@ -25,12 +25,19 @@ you can use it in your webpage because its a simple api.
 	]
 }
 ```
-# example to work with the api  with js
-```js
+# example to work with the api  with ts
+```ts
+interface api{
+	memes:[]{
+		title:string;
+		imageURL:string;
+	};
+}
 fetch("https://webscrappingwithgolang.pythonboy123.repl.co/")// made the request
-.then(r=>r.json())// decode the request into a json
+.then(r=>r.text())// decode the request into a json
 .then(d=>{
-	d.memes.map(i=>{
+	let m:api=JSON.parse(d)
+	m.memes.map(i=>{
 	// then go through the array
 		console.log(`
 		${i.title}
