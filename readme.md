@@ -35,7 +35,7 @@ fetch("https://webscrappingwithgolang.pythonboy123.repl.co/")// made the request
 		console.log(`
 		${i.title}
 		${i.imageURL}
-		`);// then print the array 
+		`);// and print the array
 	})
 
 })
