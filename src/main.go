@@ -47,7 +47,8 @@ func getMemes(apiChan chan apiMeme, errChan chan error) {
 func sendMemes(w http.ResponseWriter, r *http.Request) {
 	api, errChan := make(chan apiMeme), make(chan error)
 	go getMemes(api, errChan)
-	json.NewEncoder(w).Encode(<-api)
+	out, _ := json.Marshal(<-api)
+	w.Write(out)
 }
 func main() {
 	http.HandleFunc("/", sendMemes)
